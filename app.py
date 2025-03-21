@@ -3,6 +3,7 @@ from sklearn import datasets
 from sklearn.model_selection import train_test_split
 from sklearn.svm import SVC
 import matplotlib.pyplot as plt
+from sklearn.metrics import classification_report, confusion_matrix
 
 
 mnist = datasets.fetch_openml('mnist_784')
@@ -15,6 +16,9 @@ model = SVC(gamma='scale', kernel='rbf')
 model.fit(X_train, y_train)
 
 y_pred = model.predict(X_test)
+
+print(confusion_matrix(y_test, y_pred))
+print(classification_report(y_test, y_pred))
 
 def plot_digits(images, labels, predictions, n=10):
     plt.figure(figsize=(10, 4))
